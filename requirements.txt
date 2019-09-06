@@ -1,0 +1,4 @@
+Django==2.1.5
+djangorestframework==3.9.0
+freezegun==0.3.11
+requests
