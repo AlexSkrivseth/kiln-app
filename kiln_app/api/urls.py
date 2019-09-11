@@ -6,7 +6,9 @@ from api import views
 
 router = DefaultRouter()
 
-router.register('readings', views.ReadingModelViewSet, base_name='readings')
+
+router.register(r'readings', views.ReadingModelViewSet, base_name='readings')
+router.register(r'loads', views.LoadModelViewSet, base_name='loads')
 
 urlpatterns = []
 

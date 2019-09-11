@@ -11,8 +11,13 @@ class Load(models.Model):
     job = models.CharField(max_length=30, blank=True)
     startdate = models.DateTimeField(auto_now_add=True)
     enddate = models.DateTimeField(blank=True, null=True)
-    loadnumber = models.PositiveSmallIntegerField(blank=True)
     kiln = models.ForeignKey('Kiln', on_delete=models.CASCADE)
+    active = models.BooleanField(default=True)
+
+
+    def __str__(self):
+        return self.job
+
 
 class Reading(models.Model):
     temperature = models.DecimalField(max_digits=5, decimal_places=2)
@@ -23,8 +28,10 @@ class Reading(models.Model):
 
 
 class Kiln(models.Model):
-    active = models.BooleanField(True)
-    name = models.CharField(max_length=10, default='Kiln-1')
+    active = models.BooleanField(default=True)
+    name = models.CharField(max_length=10, default='Kiln-?')
+    def __str__(self):
+        return self.name
 
 
 
@@ -34,9 +41,3 @@ class Kiln(models.Model):
 #     startdate = models.DateTimeField(editable=True)
 #     enddate = models.DateTimeField(editable=True)
 #     report = models.FileField()
-
-
-
-
-# having trouble figuring out the one to many relationship and all.
-# any place I used ForeignKey, im not sure if i used it correctly.
