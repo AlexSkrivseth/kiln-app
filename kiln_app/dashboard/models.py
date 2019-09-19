@@ -1,10 +1,12 @@
 from django.db import models
+import datetime
 
 # Create your models here.
 class User(models.Model):
     username = models.CharField(max_length=30)
     password = models.CharField(max_length=30)
     email = models.EmailField(max_length=254, blank=True)
+
 
 class Load(models.Model):
     fiber = models.FileField(upload_to='uploaded_files/', blank=True)
@@ -24,6 +26,16 @@ class Reading(models.Model):
     humidity = models.DecimalField(max_digits=5, decimal_places=2)
     timestamp = models.DateTimeField(auto_now_add=True)
     load = models.ForeignKey(Load, on_delete=models.CASCADE)
+    # trying to make a call on wether to include absolute_humidity in the models
+    # I could graph it later on
+    # it could very informative
+
+    # cons
+    # it is something that I could add later as well
+    # I would need to calculate it everytime I create a reading
+
+    def __str__(self):
+        return "reading"
 
 
 

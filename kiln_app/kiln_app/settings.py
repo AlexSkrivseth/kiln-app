@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #thirdparty
     'rest_framework',
+    'rest_framework.authtoken',
 
     #custom
     'dashboard',
@@ -125,12 +126,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = '/static/uploaded_files/'
+# question about how this works?
+MEDIA_ROOT = "/var/www/kiln_app/media/"
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        ### YOUR CODE HERE
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        #'api.authentication.APIClientAuthentication',
+        ),
+
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+        )
 }
