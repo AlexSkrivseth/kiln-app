@@ -18,6 +18,9 @@ def index(request):
     'outside_humid': 100 * data['currently']['humidity'],
     'atmospheric_pressure':data['currently']['pressure']
     }
+    # Do some logic here to see how the kilns are trending.
+    # eg  trend = Reading.NOW - READING.24hoursPAST
+    #trend = {'kiln1':{'temp': }}
 
     # gather latest reading from each kiln load
     kiln1_readings = Reading.objects.filter(load__kiln=1)
@@ -44,6 +47,6 @@ def index(request):
 # a detail page for each kiln
 # make custom querys
 # look back on historical data
-# 
+#
 def kiln(request, kiln_id):
     return HttpResponse('You are looking at kiln_{} '.format(kiln_id))

@@ -38,6 +38,7 @@ class LoadModelViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
+        # custom logic here to end the previous load.
         end_load()
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 

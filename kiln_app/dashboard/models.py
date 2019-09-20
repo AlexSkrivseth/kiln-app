@@ -24,15 +24,9 @@ class Load(models.Model):
 class Reading(models.Model):
     temperature = models.DecimalField(max_digits=5, decimal_places=2)
     humidity = models.DecimalField(max_digits=5, decimal_places=2)
+    #absolute_humidity = models.DecimalField(blank=True, max_digits=5, decimal_places=2)
     timestamp = models.DateTimeField(auto_now_add=True)
     load = models.ForeignKey(Load, on_delete=models.CASCADE)
-    # trying to make a call on wether to include absolute_humidity in the models
-    # I could graph it later on
-    # it could very informative
-
-    # cons
-    # it is something that I could add later as well
-    # I would need to calculate it everytime I create a reading
 
     def __str__(self):
         return "reading"
@@ -44,6 +38,19 @@ class Kiln(models.Model):
     name = models.CharField(max_length=10, default='Kiln-?')
     def __str__(self):
         return self.name
+
+# class Trend(models.Model):
+#     # how to get the change in the readings?
+#     # write a function that can do this
+#     # shall I use the requests library and then automatically send a post requests
+#     # to the api createing a new trend or
+#     # should I scrap putting this in the db and just do some logic in my view?
+#     #
+#     temperature_change = models.DecimalField(max_digits=5, decimal_places=2)
+#     humidity_change = models.DecimalField(max_digits=5, decimal_places=2)
+#     abs_humidity_change = models.DecimalField(max_digits=5, decimal_places=2)
+#     load = models.ForeignKey(Load, on_delete=models.CASCADE)
+
 
 
 
