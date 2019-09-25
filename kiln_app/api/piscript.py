@@ -20,6 +20,16 @@ def read_sensor():
     return temp, humid
 
 def post():
+
+    # exclude=[blocks] optional
+    # Exclude some number of data blocks from the API response. This is useful for reducing latency and saving cache space.
+    # The value blocks should be a comma-delimeted list (without spaces) of any of the following:
+    # minutely
+    # hourly
+    # daily
+    # alerts
+    # flags
+
     t, h = read_sensor()
     reading = {'temperature': t, 'humidity': h}
 

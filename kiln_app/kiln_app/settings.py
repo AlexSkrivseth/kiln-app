@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     #thirdparty
     'rest_framework',
     'rest_framework.authtoken',
+    # to got the templates looking nice
+    'bootstrap4',
+    'crispy_forms',
+
 
     #custom
     'dashboard',
@@ -126,8 +130,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+
 # question about how this works?
-MEDIA_ROOT = "/var/www/kiln_app/media/"
+# MEDIA_ROOT = "/var/www/kiln_app/media/"
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

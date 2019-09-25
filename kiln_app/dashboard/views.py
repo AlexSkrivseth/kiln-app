@@ -28,6 +28,8 @@ def index(request):
     kiln2_readings = Reading.objects.filter(load__kiln=2)
     reading2 = kiln2_readings.latest('timestamp')
 
+
+
     # do some calculations with the temperature and the humidity
     # to get the absolute humidity in the kiln
     # absolute_humidity is in the api.utils file
@@ -42,11 +44,11 @@ def index(request):
                 'ah1': kiln1ah,
                 'ah2': kiln2ah,
       }
-    return render(request, 'dashboard/index.html', context=context)
+    return render(request, 'dashboard/main.html', context=context)
 
 # a detail page for each kiln
 # make custom querys
 # look back on historical data
 #
 def kiln(request, kiln_id):
-    return HttpResponse('You are looking at kiln_{} '.format(kiln_id))
+    return render(request, 'dashboard/base.html')
