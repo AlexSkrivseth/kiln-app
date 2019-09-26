@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-import datetime
+from datetime import datetime, timedelta
 import requests
 from dashboard.models import Reading
 from api.utils import  absolute_humidity
@@ -18,9 +18,7 @@ def index(request):
     'outside_humid': 100 * data['currently']['humidity'],
     'atmospheric_pressure':data['currently']['pressure']
     }
-    # Do some logic here to see how the kilns are trending.
-    # eg  trend = Reading.NOW - READING.24hoursPAST
-    #trend = {'kiln1':{'temp': }}
+
 
     # gather latest reading from each kiln load
     kiln1_readings = Reading.objects.filter(load__kiln=1)
@@ -36,6 +34,37 @@ def index(request):
     kiln1ah = absolute_humidity(t=reading1.temperature, rh=reading1.humidity)
     kiln2ah = absolute_humidity(t=reading2.temperature, rh=reading2.humidity)
 
+    # Do some logic here to see how the kilns are trending.
+    # eg  trend = Reading.NOW - READING.24hoursPAST
+    #trend = {'kiln1':{'temp': }}
+                                    # could make this dynamic
+    old_timestamp1 = reading1.timestamp - timedelta(days=1)
+    old_timestamp2 = reading2.timestamp - timedelta(days=1)
+
+    old_reading1_set = kiln1_readings.filter(timestamp__lt=old_timestamp1)
+    print('made it this far')
+    old_reading2_set = kiln2_readings.filter(timestamp__lt=old_timestamp2)
+    old_reading1 = old_reading1_set.latest('timestamp')
+    old_reading2 = old_reading2_set.latest('timestamp')
+
+    old_kiln1ah = absolute_humidity(t=old_reading1.temperature, rh=old_reading1.humidity)
+    old_kiln2ah = absolute_humidity(t=old_reading2.temperature, rh=old_reading2.humidity)
+
+    trend = {
+        'kiln1':{
+            'temperature': round(reading1.temperature - old_reading1.temperature, 2),
+            'humidity': round(reading1.humidity - old_reading1.humidity, 2),
+            'ahumidity': round(kiln1ah - old_kiln1ah, 2),
+        },
+        'kiln2':{
+            'temperature': round(reading2.temperature - old_reading2.temperature, 2),
+            'humidity': round(reading2.humidity - old_reading2.humidity, 2),
+            'ahumidity': round(kiln2ah - old_kiln2ah, 2),
+        },
+
+    }
+
+
     # pass the readings as context
     context = {
                 'reading1': reading1,
@@ -43,6 +72,7 @@ def index(request):
                 'current_conditions': current_conditions,
                 'ah1': kiln1ah,
                 'ah2': kiln2ah,
+                'trend': trend,
       }
     return render(request, 'dashboard/main.html', context=context)
 
