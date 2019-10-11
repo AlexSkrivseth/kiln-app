@@ -1,13 +1,13 @@
 {% extends "dashboard/base.html" %}
 
 {% block main %}
-  <p class="lead">Kilns  <i style="color: orange;" title='Edit' class="fas fa-stream"></i></p>
-  <p class="lead">Kiln1</p>
-  <table class="table table-striped">
+  <!-- <p class="lead">Kilns  <i style="color: orange;" title='Edit' class="fas fa-stream"></i></p> -->
+  <h2><span class='badge badge-dark'>Kiln - 1 </span></h2>
+  <table class="table table-striped shadow-lg p-3 mb-5 bg-white rounded">
     <thead>
       <tr style="text-align: center;">
 
-        <th>Start Date</th>
+        <th>Load Start Date</th>
 
         <th>Temperature</th>
         <th>Humidity</th>
@@ -22,28 +22,48 @@
       <td>{{reading1.load.startdate}}</td>
       <td>{{reading1.temperature}} F</td>
       <td>{{reading1.humidity}} %</td>
-      <td>{{ah1}} grams/m3</td>
+      {% if ah1 < 15 %}
+        <td>{{ah1}} grams/m3 <span class='badge badge-success'>Ready</span></td>
+        {%elif ah1 < 20 %}
+          <td>{{ah1}} grams/m3 <span class='badge badge-warning'>Almost Ready</span></td>
+      {%else%}
+        <td>{{ah1}} grams/m3 </td>
+      {%endif%}
+
       <td>{{reading1.timestamp}}</td>
 
-    </tr>
-    <tr style="text-align: center;">
-      <td>24HR TREND ->> </td>
-      <td>{{trend.kiln1.temperature}} F</td>
-      <td>{{trend.kiln1.humidity}} %</td>
-      <td>{{trend.kiln1.ahumidity}} grams/m3</td>
-      <td>##</td>
+      <tr style="text-align: center;">
+        <td class='font-weight-bold'>24HR TREND ->> </td>
+        {% if trend.kiln1.temperature > 0 %}
+          <td class='text-success'>{{trend.kiln1.temperature}} F</td>
+        {%else%}
+          <td class='text-warning'>{{trend.kiln1.temperature}} F</td>
+        {%endif%}
 
-    </tr>
+        {% if trend.kiln1.humidity < 0 %}
+          <td class='text-success'>{{trend.kiln1.humidity}} %</td>
+        {%else%}
+          <td class='text-warning'>{{trend.kiln1.humidity}} %</td>
+        {%endif%}
+
+        {% if trend.kiln1.ahumidity < 0 %}
+          <td class='text-success'>{{trend.kiln1.ahumidity}} grams/m3</td>
+        {%else%}
+          <td class='text-warning'>{{trend.kiln1.ahumidity}} grams/m3</td>
+        {%endif%}
+        <td>##</td>
+
+      </tr>
 
     </tbody>
   </table>
 
-  <p class="lead">Kiln2</p>
-  <table class="table table-striped">
+  <h2><span class='badge badge-dark'>Kiln - 2 </span></h2>
+  <table class="table table-striped shadow-lg p-3 mb-5 bg-white rounded">
     <thead>
       <tr style="text-align: center;">
 
-        <th>Start Date</th>
+        <th>Load Start Date</th>
 
         <th>Temperature</th>
         <th>Humidity</th>
@@ -58,15 +78,35 @@
       <td>{{reading2.load.startdate}}</td>
       <td>{{reading2.temperature}} F</td>
       <td>{{reading2.humidity}} %</td>
-      <td>{{ah2}} grams/m3</td>
-      <td>{{reading2.timestamp}}</td>
+      {% if ah2 < 15 %}
+          <td>{{ah2}} grams/m3 <span class='badge badge-success'>Ready</span></td>
+        {%elif ah2 < 20 %}
+          <td>{{ah2}} grams/m3 <span class='badge badge-warning'>Close</span></td>
+        {%else%}
+          <td>{{ah2}} grams/m3 </td>
+        {%endif%}
+        <td>{{reading2.timestamp}}</td>
 
     </tr>
     <tr style="text-align: center;">
-      <td>24HR TREND ->> </td>
-      <td>{{trend.kiln2.temperature}} F</td>
-      <td>{{trend.kiln2.humidity}} %</td>
-      <td>{{trend.kiln2.ahumidity}} grams/m3</td>
+      <td class='font-weight-bold'>24HR TREND ->> </td>
+      {% if trend.kiln2.temperature > 0 %}
+        <td class='text-success'>{{trend.kiln2.temperature}} F</td>
+      {%else%}
+        <td class='text-warning'>{{trend.kiln2.temperature}} F</td>
+      {%endif%}
+
+      {% if trend.kiln2.humidity < 0 %}
+        <td class='text-success'>{{trend.kiln2.humidity}} %</td>
+      {%else%}
+        <td class='text-warning'>{{trend.kiln2.humidity}} %</td>
+      {%endif%}
+
+      {% if trend.kiln2.ahumidity < 0 %}
+        <td class='text-success'>{{trend.kiln2.ahumidity}} grams/m3</td>
+      {%else%}
+        <td class='text-warning'>{{trend.kiln2.ahumidity}} grams/m3</td>
+      {%endif%}
       <td>##</td>
 
     </tr>
@@ -74,8 +114,8 @@
     </tbody>
   </table>
 
-<p class="lead">Current Conditions Outside</p>
-<table class="table table-striped">
+<h4><span class='badge badge-info'>Current Conditions Outside </span></h4>
+<table class="table table-striped shadow-lg p-3 mb-5 bg-white rounded">
   <thead>
     <tr style="text-align: center;">
 

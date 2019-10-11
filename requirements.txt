@@ -4,3 +4,6 @@ freezegun==0.3.11
 requests
 django-bootstrap4==0.0.6
 django-crispy-forms==1.7.2
+django-heroku
+gunicorn
+whitenoise

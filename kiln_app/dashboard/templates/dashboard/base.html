@@ -48,23 +48,27 @@
   <body>
      <nav class="navbar navbar-expand-md navbar-grey bg-dark fixed-top">
        <a class="navbar-brand"><img src= '{% static "dashboard/CaribouHead.png"%}' alt="Caribou Head"alt="" width="32"></a>
+
        <ul class="nav navbar-nav mr-auto"></ul>
-       <ul class="nav navbar-nav">
+       <!-- <ul class="nav navbar-nav">
        {% if request.user.is_authenticated %}
          <li class="nav-item"><a class="nav-link active" href="#"><i class="fa fa-user"></i> {{request.user.username|capfirst}}</a></li>
          <li class="nav-item"><a class="btn btn-outline-light" href="/accounts/logout">Log out</a></li>
        {% else %}
          <li class="nav-item"><a class="btn btn-outline-light" href="/accounts/login">Log in</a></li>
        {% endif %}
-       </ul>
+       </ul> -->
      </nav>
 
      <main role="main" class="container">
        <div class="starter-template">
          <h1>
            Kiln App
-           <i style="color: red;" class="fas fa-burn"></i>
+           <i style="color: firebrick;" class="m-2 fas fa-industry"></i>
+           <!-- <img src= '{% static "dashboard/Cariboulogo.jpg"%}' alt="Caribou Head"alt="" width="300" class=' m-5 align-middle'> -->
+
          </h1>
+
          <br>
          {% block main %}
          {% endblock %}
