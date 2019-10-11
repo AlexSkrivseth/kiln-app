@@ -1,1 +1,1 @@
-web: gunicorn nwtech_telnet_client.wsgi --log-file -
+web: gunicorn kiln_app.wsgi --log-file -
