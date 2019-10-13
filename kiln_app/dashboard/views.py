@@ -42,7 +42,7 @@ def index(request):
         old_timestamp2 = reading2.timestamp - timedelta(days=1)
 
         old_reading1_set = kiln1_readings.filter(timestamp__lt=old_timestamp1)
-        print('made it this far')
+
         old_reading2_set = kiln2_readings.filter(timestamp__lt=old_timestamp2)
         old_reading1 = old_reading1_set.latest('timestamp')
         old_reading2 = old_reading2_set.latest('timestamp')
@@ -75,8 +75,8 @@ def index(request):
                     'trend': trend,
           }
         return render(request, 'dashboard/main.html', context=context)
-    except:
-        return HttpResponse("Fail")
+    except Exception as e:
+        return HttpResponse("Fail {}".format(e))
 
 # a detail page for each kiln
 # make custom querys
