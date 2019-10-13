@@ -14,7 +14,7 @@ class Load(models.Model):
     startdate = models.DateTimeField(auto_now_add=True)
     enddate = models.DateTimeField(blank=True, null=True)
     kiln = models.ForeignKey('Kiln', on_delete=models.CASCADE)
-    active = models.BooleanField(default=True)
+    #active = models.BooleanField(default=True)
 
 
     def __str__(self):
@@ -24,7 +24,6 @@ class Load(models.Model):
 class Reading(models.Model):
     temperature = models.DecimalField(max_digits=5, decimal_places=2)
     humidity = models.DecimalField(max_digits=5, decimal_places=2)
-    #absolute_humidity = models.DecimalField(blank=True, max_digits=5, decimal_places=2)
     timestamp = models.DateTimeField(auto_now_add=True)
     load = models.ForeignKey(Load, on_delete=models.CASCADE)
 
