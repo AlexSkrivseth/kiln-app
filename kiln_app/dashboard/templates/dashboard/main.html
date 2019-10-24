@@ -2,12 +2,12 @@
 
 {% block main %}
   <!-- <p class="lead">Kilns  <i style="color: orange;" title='Edit' class="fas fa-stream"></i></p> -->
-  <h2><span class='badge badge-dark'>Kiln - 1 </span></h2>
+  <h2><span class='badge badge-primary'>Kiln - 1 </span><span class='badge badge-secondary'>{{daynum1}} days</span></h2>
   <table class="table table-striped shadow-lg p-3 mb-5 bg-white rounded">
     <thead>
       <tr style="text-align: center;">
 
-        <th>Load Start Date</th>
+        <th>What Job is Cooking?</th>
 
         <th>Temperature</th>
         <th>Humidity</th>
@@ -19,13 +19,13 @@
     <tbody>
 
     <tr style="text-align: center;">
-      <td>{{reading1.load.startdate}}</td>
+      <td>{{reading1.load.job}}</td>
       <td>{{reading1.temperature}} F</td>
       <td>{{reading1.humidity}} %</td>
       {% if ah1 < 15 %}
-        <td>{{ah1}} grams/m3 <span class='badge badge-success'>Ready</span></td>
+        <td>{{ah1}} grams/m3 <span class='badge badge-success'>This Wood Is Dry!</span></td>
         {%elif ah1 < 20 %}
-          <td>{{ah1}} grams/m3 <span class='badge badge-warning'>Almost Ready</span></td>
+          <td>{{ah1}} grams/m3 <span class='badge badge-warning'>Almost Dry</span></td>
       {%else%}
         <td>{{ah1}} grams/m3 </td>
       {%endif%}
@@ -58,12 +58,12 @@
     </tbody>
   </table>
 
-  <h2><span class='badge badge-dark'>Kiln - 2 </span></h2>
+  <h2><span class='badge badge-primary'>Kiln - 2 </span><span class='badge badge-secondary'>In {{daynum2}} Days</span></h2>
   <table class="table table-striped shadow-lg p-3 mb-5 bg-white rounded">
     <thead>
       <tr style="text-align: center;">
 
-        <th>Load Start Date</th>
+        <th>What Job is Cooking?</th>
 
         <th>Temperature</th>
         <th>Humidity</th>
@@ -75,13 +75,13 @@
     <tbody>
 
     <tr style="text-align: center;">
-      <td>{{reading2.load.startdate}}</td>
+      <td>{{reading2.load.job}}</td>
       <td>{{reading2.temperature}} F</td>
       <td>{{reading2.humidity}} %</td>
       {% if ah2 < 15 %}
-          <td>{{ah2}} grams/m3 <span class='badge badge-success'>Ready</span></td>
+          <td>{{ah2}} grams/m3 <span class='badge badge-success'>This Wood Is Dry!</span></td>
         {%elif ah2 < 20 %}
-          <td>{{ah2}} grams/m3 <span class='badge badge-warning'>Close</span></td>
+          <td>{{ah2}} grams/m3 <span class='badge badge-warning'>Almost Dry</span></td>
         {%else%}
           <td>{{ah2}} grams/m3 </td>
         {%endif%}
@@ -114,7 +114,7 @@
     </tbody>
   </table>
 
-<h4><span class='badge badge-info'>Current Conditions Outside </span></h4>
+<h4><span class='badge badge-info'>Outside Conditions </span></h4>
 <table class="table table-striped shadow-lg p-3 mb-5 bg-white rounded">
   <thead>
     <tr style="text-align: center;">

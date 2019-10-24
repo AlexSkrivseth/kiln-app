@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 import requests
-from dashboard.models import Reading
+from dashboard.models import Reading, Load
 from api.utils import  absolute_humidity
 
 
@@ -26,8 +26,11 @@ def index(request):
         kiln2_readings = Reading.objects.filter(load__kiln=2)
         reading2 = kiln2_readings.latest('timestamp')
 
-
-
+        loads = Load.objects.filter(active=True)
+        load1 = loads.get(kiln=1)
+        load2 = loads.get(kiln=2)
+        daynum1 = (datetime.now(timezone.utc) - load1.startdate).days
+        daynum2 = (datetime.now(timezone.utc) - load2.startdate).days
         # do some calculations with the temperature and the humidity
         # to get the absolute humidity in the kiln
         # absolute_humidity is in the api.utils file
@@ -73,6 +76,8 @@ def index(request):
                     'ah1': kiln1ah,
                     'ah2': kiln2ah,
                     'trend': trend,
+                    'daynum1': daynum1,
+                    'daynum2': daynum2,
           }
         return render(request, 'dashboard/main.html', context=context)
     except Exception as e:
