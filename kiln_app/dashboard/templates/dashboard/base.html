@@ -59,14 +59,11 @@
        <a class="navbar-brand"><img src= '{% static "dashboard/CaribouHead.png"%}' alt="Caribou Head"alt="" width="32"></a>
 
        <ul class="nav navbar-nav mr-auto"></ul>
-       <!-- <ul class="nav navbar-nav">
-       {% if request.user.is_authenticated %}
-         <li class="nav-item"><a class="nav-link active" href="#"><i class="fa fa-user"></i> {{request.user.username|capfirst}}</a></li>
-         <li class="nav-item"><a class="btn btn-outline-light" href="/accounts/logout">Log out</a></li>
-       {% else %}
-         <li class="nav-item"><a class="btn btn-outline-light" href="/accounts/login">Log in</a></li>
-       {% endif %}
-       </ul> -->
+       <ul class="nav navbar-nav">
+
+         <li class="nav-item"><a class="btn btn-outline-light" href="/api">Add Load</a></li>
+
+       </ul>
      </nav>
 
      <main role="main" class="container">
