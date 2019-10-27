@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from datetime import datetime, timedelta, timezone
 import requests
-from dashboard.models import Reading, Load
+from dashboard.models import Reading, Load, Kiln
 from api.utils import  absolute_humidity
 
 
@@ -88,4 +88,15 @@ def index(request):
 # look back on historical data
 #
 def kiln(request, kiln_id):
-    return render(request, 'dashboard/base.html')
+    if kiln_id == 1 or kiln_id == 2:
+        # need to load the temps of kiln-2 into a list
+        readings = Reading.objects.filter(load__kiln=kiln_id)
+        context = {
+                'temps':[int(reading.temperature) for reading in readings],
+                'humids': [int(reading.humidity) for reading in readings],
+                'time': [str(reading.timestamp) for reading in readings]
+        }
+        print(context)
+        return render(request, 'dashboard/test.html', context=context)
+    else:
+        return HttpResponse('No kiln with that ID try 1 or 2')
