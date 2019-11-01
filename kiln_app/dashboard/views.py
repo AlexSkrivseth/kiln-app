@@ -90,7 +90,7 @@ def index(request):
 def kiln(request, kiln_id):
     if kiln_id == 1 or kiln_id == 2:
         # need to load the temps of kiln-2 into a list
-        readings = Reading.objects.filter(load__kiln=kiln_id)
+        readings = Reading.objects.filter(load__kiln=kiln_id).order_by('timestamp')
         #readings = readings.filter(timestamp__gte=datetime.now() - timedelta(days=15))
         context = {
                 'temps':[int(reading.temperature) for reading in readings],
