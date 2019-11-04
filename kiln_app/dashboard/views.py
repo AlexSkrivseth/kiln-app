@@ -6,8 +6,6 @@ from dashboard.models import Reading, Load, Kiln
 from api.utils import  absolute_humidity
 
 
-# Create your views here.
-
 # index provides a broad overview of current conditions
 def index(request):
     # hit the darksky api and get the current conditions

@@ -58,7 +58,7 @@
     label: "Temperature",
     data: temps,
     backgroundColor: [
-    'rgba(105, 0, 132, .2)',
+    'rgba(105, 0, 132, .5)',
     ],
     borderColor: [
     'rgba(200, 99, 132, .7)',
@@ -70,7 +70,7 @@
     label: "Humidity",
     data: humids,
     backgroundColor: [
-    'rgba(0, 137, 132, .2)',
+    'rgba(0, 137, 132, .4)',
     ],
     borderColor: [
     'rgba(0, 10, 130, .7)',
@@ -81,7 +81,11 @@
     ]
     },
     options: {
-    responsive: true
+    labels:{
+      fontColor: '#fff',
+      fontSize: 20,
+    },
+    responsive: true,
     }
     });
   </script>

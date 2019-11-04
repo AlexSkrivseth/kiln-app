@@ -21,46 +21,23 @@ def read_sensor():
 
 def post():
 
-    # exclude=[blocks] optional
-    # Exclude some number of data blocks from the API response. This is useful for reducing latency and saving cache space.
-    # The value blocks should be a comma-delimeted list (without spaces) of any of the following:
-    # minutely
-    # hourly
-    # daily
-    # alerts
-    # flags
-
     t, h = read_sensor()
     reading = {'temperature': t, 'humidity': h}
 
     #sending a post request to the api
-    url_endpoint = "http://cclhkilns.ngrok.io/api/readings/"
-    #import ipbd ; ipbd.set_trace()
+    url_endpoint = 'https://wherever_the_app_is_hosted'
     requests.post(url_endpoint, json=reading, headers={
+        # both pis can use this Token
         'Authorization': 'Token 90c7e49e8adebad43e7a900fbcf5936a75a5db3e',
+        # this is a custom header that the kiln-app must have to create a new reading
+        # this must be '1' or '2' depending on which pi this script is on.
         'kiln': '1'}
                   )
 
-
 def main():
-
     try:
-
         post()
-
-    except:
-        print("fail")
-        temp = "offline"
-        humid = "offline"
+    except Exception as e:
+        print(e)
 
 main()
-
-
-
-'''
-while True:
-    try:
-        main()
-    except:
-        print("main() fail")
-'''
