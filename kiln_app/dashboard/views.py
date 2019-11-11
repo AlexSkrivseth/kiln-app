@@ -95,7 +95,7 @@ def kiln(request, kiln_id):
                 'humids': [int(reading.humidity) for reading in readings],
                 'time': [str(reading.timestamp) for reading in readings]
         }
-        print(context)
+    
         return render(request, 'dashboard/test.html', context=context)
     else:
         return HttpResponse('No kiln with that ID try 1 or 2')

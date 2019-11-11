@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '3k_bqqob)c=k74#85klvgxf83t#_a5ixr(ii(&fw@3=nopni)h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     #thirdparty
     'rest_framework',
     'rest_framework.authtoken',
-    # to got the templates looking nice
+    # to get the templates looking nice
     'bootstrap4',
     'crispy_forms',
 

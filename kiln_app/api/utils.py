@@ -73,7 +73,7 @@ def absolute_humidity(t=None, rh=None):
         # T is celsius
         ah = 6.112 * 2.71828**((17.67 * T)/(T+243.5)) * rh * 2.1674 / (273.15+T)
         AH = round(ah, 2)
-        print("The absolute_humidity is {} grams/m3".format(ah))
+        
 
         return AH
     else:
