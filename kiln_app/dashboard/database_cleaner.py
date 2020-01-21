@@ -1,3 +1,9 @@
+import os
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "kiln_app.settings")
+import django
+django.setup()
+
 from dashboard.models import *
 readings = Reading.objects.all()
 from django.utils import timezone
