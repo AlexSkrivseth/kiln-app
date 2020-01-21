@@ -50,19 +50,3 @@ class LoadModelViewSet(viewsets.ModelViewSet):
 
 
         return Response(serializer.data)
-
-
-
-
-
-    # include logic to:
-    # when a new load is created give the old load an endate
-    # check that there is only one load active for each kiln.
-    # that the load that is active is the latest load
-
-
-
-
-        # gather loads with no enddate should only be two at most
-        # take the load with the older startdate and give it an enddate of now
-        # call the is_active method on that load which shoud switch it off.
