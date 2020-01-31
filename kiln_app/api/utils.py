@@ -9,7 +9,7 @@ def end_load():
 
     kiln1_loads = Load.objects.filter(kiln=1)
     kiln2_loads = Load.objects.filter(kiln=2)
-
+# KILN 1 ###########################################################
     active_loads = kiln1_loads.filter(enddate=None)
 
 
@@ -25,10 +25,10 @@ def end_load():
             active_loads[0].save()
 
     if len(active_loads) > 2:
-        print('you got issues in your db man. Check out the admin page to fix them.')
+        print('There are too many loads active in kiln1')
+####################################################################
 
-
-
+# KILN 2 ##########################################################
     active_loads2 = kiln2_loads.filter(enddate=None)
 
     if len(active_loads2) == 2:
@@ -43,15 +43,15 @@ def end_load():
 
     if len(active_loads2) > 2:
         # raise exception here
-        print('you got issues in your db man. Check out the admin page to fix them.')
-        print('you have too many loads active')
+        print('There are too many loads active in kiln2')
 
-    # print('\n')
-    # print('end_load was called')
-    # print('\n')
+
     return None
 
 
+
+# this function is used to verify which kiln the reading is coming from
+# it then assigns the reading to the correct load
 
 def _get_active_load(kiln_id):
     loads = Load.objects.filter(kiln__id=kiln_id)
@@ -60,9 +60,10 @@ def _get_active_load(kiln_id):
     except:
         #raise excpetion here
         print('\n')
-        print('Got an error Dude')
+        print('LOGIC IS NOT BEING ENFORCED CORRECTLY IN YOUR DB. PLEASE CHECK THE ADMIN.')
         print('\n')
     return active_load.id
+
 
 # pass in Temp in farhenheit
 def absolute_humidity(t=None, rh=None):
@@ -71,9 +72,10 @@ def absolute_humidity(t=None, rh=None):
     if t and rh:
         T = (t - 32) * 5/9
         # T is celsius
+        # this is a generic formula I found to get absolute humidity from temperature and relative humidity
         ah = 6.112 * 2.71828**((17.67 * T)/(T+243.5)) * rh * 2.1674 / (273.15+T)
         AH = round(ah, 2)
-        
+
 
         return AH
     else:

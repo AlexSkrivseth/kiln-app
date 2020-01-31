@@ -1,5 +1,8 @@
 import os
+# this just deletes all data older than seven days
+# I run this every day with heroku scheduler
 
+# this setup is required for this script to access djangos ORM
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "kiln_app.settings")
 import django
 django.setup()

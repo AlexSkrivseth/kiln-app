@@ -37,25 +37,3 @@ class Kiln(models.Model):
     name = models.CharField(max_length=10, default='Kiln-?')
     def __str__(self):
         return self.name
-
-# class Trend(models.Model):
-#     # how to get the change in the readings?
-#     # write a function that can do this
-#     # shall I use the requests library and then automatically send a post requests
-#     # to the api createing a new trend or
-#     # should I scrap putting this in the db and just do some logic in my view?
-#     #
-#     temperature_change = models.DecimalField(max_digits=5, decimal_places=2)
-#     humidity_change = models.DecimalField(max_digits=5, decimal_places=2)
-#     abs_humidity_change = models.DecimalField(max_digits=5, decimal_places=2)
-#     load = models.ForeignKey(Load, on_delete=models.CASCADE)
-
-
-
-
-
-# future plans for this.
-# class Report(models.Model):
-#     startdate = models.DateTimeField(editable=True)
-#     enddate = models.DateTimeField(editable=True)
-#     report = models.FileField()

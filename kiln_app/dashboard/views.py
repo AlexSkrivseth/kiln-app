@@ -7,6 +7,7 @@ from api.utils import  absolute_humidity
 
 
 # index provides a broad overview of current conditions
+# index is the main dashboard
 def index(request):
     # hit the darksky api and get the current conditions
     r = requests.get('https://api.darksky.net/forecast/be0d42628d574bdbab49edeaa13d3759/48.721625,-116.303509')
@@ -82,9 +83,8 @@ def index(request):
         return HttpResponse("Fail {}".format(e))
 
 # a detail page for each kiln
-# make custom querys
-# look back on historical data
-#
+# graphs the last seven days of data
+
 def kiln(request, kiln_id):
     if kiln_id == 1 or kiln_id == 2:
         # need to load the temps of kiln-2 into a list
@@ -95,7 +95,7 @@ def kiln(request, kiln_id):
                 'humids': [int(reading.humidity) for reading in readings],
                 'time': [str(reading.timestamp) for reading in readings]
         }
-    
+
         return render(request, 'dashboard/test.html', context=context)
     else:
         return HttpResponse('No kiln with that ID try 1 or 2')
