@@ -3,7 +3,8 @@ from dashboard import views
 
 
 urlpatterns = [
-    path('', views.index),
+    path('', views.main),
+    path('dev', views.dev),
     path('kiln/<int:kiln_id>/', views.kiln),
 
 

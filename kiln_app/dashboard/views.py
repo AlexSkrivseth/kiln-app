@@ -6,9 +6,9 @@ from dashboard.models import Reading, Load, Kiln
 from api.utils import  absolute_humidity
 
 
-# index provides a broad overview of current conditions
-# index is the main dashboard
-def index(request):
+# main provides a broad overview of current conditions
+# main is the main dashboard
+def main(request):
     # hit the darksky api and get the current conditions
     r = requests.get('https://api.darksky.net/forecast/be0d42628d574bdbab49edeaa13d3759/48.721625,-116.303509')
     data = r.json()
@@ -96,6 +96,27 @@ def kiln(request, kiln_id):
                 'time': [str(reading.timestamp) for reading in readings]
         }
 
-        return render(request, 'dashboard/test.html', context=context)
+        return render(request, 'dashboard/detail_chart.html', context=context)
     else:
         return HttpResponse('No kiln with that ID try 1 or 2')
+
+
+# dev allows for a template to be rendered before there is 24hrs of data.
+# main requires there to be 24hrs of data and will get an error when it tries to query data that isnt there
+
+def dev(request):
+
+    # gather latest reading from each kiln load
+    kiln1_readings = Reading.objects.filter(load__kiln=1)
+    reading1 = kiln1_readings.latest('timestamp')
+    kiln2_readings = Reading.objects.filter(load__kiln=2)
+    reading2 = kiln2_readings.latest('timestamp')
+
+
+    context = {
+                'reading1': reading1,
+                'reading2': reading2,
+                }
+
+
+    return render(request, 'dashboard/main.html', context=context)
