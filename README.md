@@ -20,4 +20,4 @@ A web application built with django hosted on heroku
 #commands to get the app running
 set the PythonPath and the settings module
 
-export PYTHONPATH=kiln_app DJANGO_SETTINGS_MODULE=kiln_app.settings
+export PYTHONPATH=kiln_app DJANGO_SETTINGS_MODULE=kiln_app.settings.dev
