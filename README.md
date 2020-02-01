@@ -19,5 +19,11 @@ A web application built with django hosted on heroku
 
 #commands to get the app running
 set the PythonPath and the settings module
-
 export PYTHONPATH=kiln_app DJANGO_SETTINGS_MODULE=kiln_app.settings.dev
+
+
+# there is some initial setup on the admin page that will need to be done
+
+- add kilns
+- add loads
+- readings cannot exist without kilns and loads first being created
