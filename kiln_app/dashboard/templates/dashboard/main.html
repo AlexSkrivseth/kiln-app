@@ -36,8 +36,10 @@
         <td class='font-weight-bold'>24HR TREND ->> </td>
         {% if trend.kiln1.temperature > 0 %}
           <td class='text-success'>{{trend.kiln1.temperature}} F</td>
-        {%else%}
-          <td class='text-warning'>{{trend.kiln1.temperature}} F</td>
+        {% elif trend.kiln1.temperature > -10  %}
+            <td class='text-warning'>{{trend.kiln1.temperature}} F</td>
+        {% else %}
+            <td class='text-danger'>{{trend.kiln1.temperature}} F</td>
         {%endif%}
 
         {% if trend.kiln1.humidity < 0 %}
@@ -92,8 +94,11 @@
       <td class='font-weight-bold'>24HR TREND ->> </td>
       {% if trend.kiln2.temperature > 0 %}
         <td class='text-success'>{{trend.kiln2.temperature}} F</td>
-      {%else%}
+      {% elif trend.kiln2.temperature > -10  %}
         <td class='text-warning'>{{trend.kiln2.temperature}} F</td>
+      {% else %}
+        <td class='text-danger'>{{trend.kiln2.temperature}} F</td>
+
       {%endif%}
 
       {% if trend.kiln2.humidity < 0 %}
