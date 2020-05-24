@@ -7,8 +7,8 @@ from api import views
 router = DefaultRouter()
 
 
-router.register(r'readings', views.ReadingModelViewSet, base_name='readings')
-router.register(r'loads', views.LoadModelViewSet, base_name='loads')
+router.register(r'readings', views.ReadingModelViewSet, basename='readings')
+router.register(r'loads', views.LoadModelViewSet, basename='loads')
 
 urlpatterns = []
 

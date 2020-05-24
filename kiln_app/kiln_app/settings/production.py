@@ -11,4 +11,4 @@ SECRET_KEY = os.getenv(
     '^8ai-6gb)yyg19uangdahsi8a%c=)mb0yler7%0jlh1mz!^gnago;91_')
 
 # overwriting the basic settings
-DEBUG = False
+DEBUG = True
