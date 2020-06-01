@@ -2,7 +2,6 @@
 
 {% block main %}
   <!-- <p class="lead">Kilns  <i style="color: orange;" title='Edit' class="fas fa-stream"></i></p> -->
-  <h2><a href="/kiln/1/"><span class='badge badge-primary'>Kiln - 1 </span></a><span class='badge badge-secondary'>Day {{daynum1}}</span></h2>
   <div class="alert alert-warning">
   <h4 class="alert-heading">Note</h4>
   <p class="mb-0">By measuring the air temperature and humidity we are indirectly making a best guess at the MC is of the fiber.
@@ -10,9 +9,11 @@
     The same is true of dry logs. We know what the air temp and humidity is at the point that they are dry.
     This makes an assumption on how fast moisture leaves the kiln itself. Kiln-1 is much less air-tight than Kiln-2.
     So the air temperature and humidity is different for each kiln when the wood is dry. The fiber is close to dry when <strong>Kiln-1 (RH = 10%:Temp = 150) and Kiln-2 (RH = 20%:Temp = 145)</strong>.
-    This is a guide and not a replacement for measuring the MC with the probe. 
+    This is a guide and not a replacement for measuring the MC with the probe.
      </p>
 </div>
+  <h2><a href="/kiln/1/"><span class='badge badge-primary'>Kiln - 1 </span></a><span class='badge badge-secondary'>Day {{daynum1}}</span></h2>
+
   <table class="table table-striped shadow-lg p-3 mb-5 bg-white rounded">
     <thead>
       <tr style="text-align: center;">

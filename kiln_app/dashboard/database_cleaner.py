@@ -3,7 +3,7 @@ import os
 # I run this every day with heroku scheduler
 
 # this setup is required for this script to access djangos ORM
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "kiln_app.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "kiln_app.settings.production")
 import django
 django.setup()
 
