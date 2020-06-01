@@ -19,7 +19,6 @@ class ReadingModelViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         # adding the correct load number to the reading before it goes to the serializer
         # adding more information to the request before it is sent to the serializer
-        print(request.headers())
         request.data['load'] = _get_active_load(request.headers['kiln'])
         #
         serializer = self.get_serializer(data=request.data)
