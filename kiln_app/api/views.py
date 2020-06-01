@@ -17,7 +17,7 @@ class ReadingModelViewSet(viewsets.ModelViewSet):
     queryset = Reading.objects.all()
     # overwriting this function to add some cusomization
     def create(self, request, *args, **kwargs):
-        print("ALEX"*8)
+        print("API RECIEVING READING FROM KILN_")
         print(request.data['kiln'])
         # adding the correct load number to the reading before it goes to the serializer
         # adding more information to the request before it is sent to the serializer
