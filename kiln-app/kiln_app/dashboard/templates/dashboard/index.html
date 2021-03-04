@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-149828911-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-149828911-1');
+</script>
+
+<title>Kiln Sensor App</title>
+    <link rel="stylesheet" type="text" href="/static/css/main.css">
+</head>
+<body>
+  <h2 class="title">Caribou Creek Kilns</h2>
+  <h1> Kiln-1 </h1>
+  <h5> Job # - {{reading1.load}}</br> Start Date - {{reading1.load.startdate}} </h5>
+  <p1 class='temp'>Temperature - <strong>{{reading1.temperature}} F</strong> <br/></p1>
+  <br/>
+  <p2 class="humid">Humidity - <strong>{{reading1.humidity}} %</strong> <br/></p2>
+  <br/>
+  <p> Absolute Humidity - {{ah1}} grams/m3</p>
+  <p3 class='timest'>Time Stamp: {{reading1.timestamp}} <br/> </p3>
+
+  <br/>
+  <h1> Kiln-2 </h1>
+  <h5> Job # - {{reading2.load}}</br> Start Date - {{reading2.load.startdate}} </h5>
+  <p1 class="temp">Temperature - <strong>{{reading2.temperature}} F</strong> <br/></p1>
+  <br/>
+  <p2 class="humid">Humidity - <strong>{{reading2.humidity}} %</strong> <br/></p2>
+  <br/>
+  <p> Absolute Humidity - {{ah2}} grams/m3</p>
+  <p3 class='timest'>Time Stamp: {{reading2.timestamp}}</p3>
+
+  <h2> Current Conditions Outside </h2>
+  <p> Temperature - {{current_conditions.outside_temp}} F</p>
+  <p> Humidity - {{current_conditions.outside_humid}} %</p>
+  <p> Pressure - {{current_conditions.atmospheric_pressure}} Hectopascals</p>
+</body>
+</html>

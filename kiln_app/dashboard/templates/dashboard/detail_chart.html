@@ -1,0 +1,102 @@
+{% extends "dashboard/base.html" %}
+
+{% block main %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Kiln-Chart</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design for Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/css/mdb.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Start your project here-->
+  <h1>All Time Graph</h1>
+  <div style="height: 100vh">
+    <div class="flex-center flex-column">
+
+      <canvas id="lineChart"></canvas>
+    </div>
+  </div>
+  <!-- Start your project here-->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!-- Popper.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+  <!-- Bootstrap -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+  <!-- Material Design for Bootstrap -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/js/mdb.min.js"></script>
+  <!-- # https://docs.djangoproject.com/en/3.0/ref/templates/builtins/ -->
+  {{ temps|json_script:"temps" }}
+  {{ humids|json_script:"humids" }}
+  {{ time|json_script:"time_stamps" }}
+  <script>
+      //line
+    var temps = JSON.parse(document.getElementById('temps').textContent);
+    var humids = JSON.parse(document.getElementById('humids').textContent);
+    var time_stamps = JSON.parse(document.getElementById('time_stamps').textContent);
+
+    var ctxL = document.getElementById("lineChart").getContext('2d');
+    var myLineChart = new Chart(ctxL, {
+    type: 'line',
+    data: {
+    labels: time_stamps,
+    datasets: [{
+    label: "Temperature",
+    data: temps,
+    backgroundColor: [
+    'rgba(105, 0, 132, .5)',
+    ],
+    borderColor: [
+    'rgba(200, 99, 132, .7)',
+    ],
+    borderWidth: 2,
+    pointRadius: 0,
+    },
+    {
+    label: "Humidity",
+    data: humids,
+    backgroundColor: [
+    'rgba(0, 137, 132, .4)',
+    ],
+    borderColor: [
+    'rgba(0, 10, 130, .7)',
+    ],
+    borderWidth: 2,
+    pointRadius: 0,
+    }
+    ]
+    },
+    options: {
+      scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        },
+    labels:{
+      fontColor: '#fff',
+      fontSize: 20,
+    },
+    responsive: true,
+    }
+    });
+  </script>
+
+</body>
+{% endblock %}
