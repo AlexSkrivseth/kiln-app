@@ -1,19 +1,39 @@
 {% extends "dashboard/base.html" %}
 
 {% block main %}
-  <!-- <p class="lead">Kilns  <i style="color: orange;" title='Edit' class="fas fa-stream"></i></p> -->
+
 
   <h2><a href="/kiln/1/"><span class='badge badge-primary'>Kiln - 1 </span></a><span class='badge badge-secondary'>Day {{daynum1}}</span></h2>
+
+  <table class="charts-css line" id="my-chart">
+
+  <tbody>
+    <tr>
+      <td style="--start: 0.2; --size: 0.4"> <span class="data"> $ 40K </span> </td>
+    </tr>
+    <tr>
+      <td style="--start: 0.4; --size: 0.8"> <span class="data"> $ 80K </span> </td>
+    </tr>
+    <tr>
+      <td style="--start: 0.8; --size: 0.6"> <span class="data"> $ 60K </span> </td>
+    </tr>
+    <tr>
+      <td style="--start: 0.6; --size: 1.0"> <span class="data"> $ 100K </span> </td>
+    </tr>
+    <tr>
+      <td style="--start: 1.0; --size: 0.3"> <span class="data"> $ 30K </span> </td>
+    </tr>
+  </tbody>
+
+</table>
 
   <table class="table table-striped shadow-lg p-3 mb-5 bg-white rounded">
     <thead>
       <tr style="text-align: center;">
 
         <th>What Job is Cooking?</th>
-
         <th>Temperature</th>
         <th>Humidity</th>
-        <!-- <th>Absolute Humidity</th> -->
         <th>Time Stamp</th>
 
       </tr>
@@ -24,15 +44,8 @@
       <td>{{reading1.load.job}}</td>
       <td>{{reading1.temperature}} F</td>
       <td>{{reading1.humidity}} %</td>
-      <!-- {% if ah1 < 15 %}
-        <td>{{ah1}} grams/m3 <span class='badge badge-success'>This Wood Is Dry!</span></td>
-        {%elif ah1 < 20 %}
-          <td>{{ah1}} grams/m3 <span class='badge badge-warning'>Almost Dry</span></td>
-      {%else%}
-        <td>{{ah1}} grams/m3 </td>
-      {%endif%} -->
-
       <td>{{reading1.timestamp}}</td>
+    </tr>
 
       <tr style="text-align: center;">
         <td class='font-weight-bold'>24HR TREND ->> </td>
@@ -50,11 +63,6 @@
           <td class='text-warning'>{{trend.kiln1.humidity}} %</td>
         {%endif%}
 
-        <!-- {% if trend.kiln1.ahumidity < 0 %}
-          <td class='text-success'>{{trend.kiln1.ahumidity}} grams/m3</td>
-        {%else%}
-          <td class='text-warning'>{{trend.kiln1.ahumidity}} grams/m3</td>
-        {%endif%} -->
         <td>##</td>
 
       </tr>
@@ -72,7 +80,7 @@
 
         <th>Temperature</th>
         <th>Humidity</th>
-        <!-- <th>Absolute Humidity</th> -->
+
         <th>Time Stamp</th>
 
       </tr>
@@ -83,13 +91,7 @@
       <td>{{reading2.load.job}}</td>
       <td>{{reading2.temperature}} F</td>
       <td>{{reading2.humidity}} %</td>
-      <!-- {% if ah2 < 15 %}
-          <td>{{ah2}} grams/m3 <span class='badge badge-success'>This Wood Is Dry!</span></td>
-        {%elif ah2 < 20 %}
-          <td>{{ah2}} grams/m3 <span class='badge badge-warning'>Almost Dry</span></td>
-        {%else%}
-          <td>{{ah2}} grams/m3 </td>
-        {%endif%} -->
+
         <td>{{reading2.timestamp}}</td>
 
     </tr>
@@ -110,11 +112,6 @@
         <td class='text-warning'>{{trend.kiln2.humidity}} %</td>
       {%endif%}
 
-      <!-- {% if trend.kiln2.ahumidity < 0 %}
-        <td class='text-success'>{{trend.kiln2.ahumidity}} grams/m3</td>
-      {%else%}
-        <td class='text-warning'>{{trend.kiln2.ahumidity}} grams/m3</td>
-      {%endif%} -->
       <td>##</td>
 
     </tr>
