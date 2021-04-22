@@ -1,0 +1,79 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+
+    {% include 'dashboard/css.html' %}
+    {% include 'dashboard/js.html' %}
+    <script src="https://kit.fontawesome.com/6b2f94428d.js" crossorigin="anonymous"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Tank Hacker</title>
+
+    <style media="screen">
+
+      button {
+        margin: 2px 2px;
+      }
+
+      .flex-box-cards {
+
+        background-color: white;
+        margin: 10px;
+        padding: 5px 5px 5px 5px;
+        display: flex;
+        align-items: top;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+
+
+
+
+      }
+
+      .card {
+        margin: 8px;
+        padding: 5px 5px 5px 5px;
+        background-color: white;
+        width: 450px;
+        height: content;
+        border-radius: 5px;
+        box-shadow: black 0 0 8px;
+        border: solid gray 1px;
+
+
+      }
+      .card-flex-item{
+        background-color: white;
+        display: flex;
+        align-items: stretch;
+        align-items: center;
+
+        flex-wrap: wrap;
+      }
+      .card-item {
+        margin: 4px;
+        padding: 4px;
+        background-color: white;
+        height: content;
+        flex-grow: 1;
+        border-radius: 5px;
+
+
+
+
+    </style>
+  </head>
+  <body>
+
+    <div>
+     {% block main %}
+     {% endblock main %}
+   </div>
+<!-- javascript here please  -->
+   </body>
+ </html>

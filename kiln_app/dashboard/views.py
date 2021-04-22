@@ -164,17 +164,24 @@ def main_dev(request):
 
         old_kiln1ah = absolute_humidity(t=old_reading1.temperature, rh=old_reading1.humidity)
         old_kiln2ah = absolute_humidity(t=old_reading2.temperature, rh=old_reading2.humidity)
+        kiln1_data_old = False
+        if datetime.now(timezone.utc) - timedelta(hours=2) > reading1.timestamp:
+            kiln1_data_old = True
+        kiln2_data_old = False
+        if datetime.now(timezone.utc) - timedelta(hours=2) > reading1.timestamp:
+            kiln2_data_old = True
+
 
         trend = {
             'kiln1':{
-                'temperature': round(reading1.temperature - old_reading1.temperature, 2),
-                'humidity': round(reading1.humidity - old_reading1.humidity, 2),
-                'ahumidity': round(kiln1ah - old_kiln1ah, 2),
+                'temperature': round(reading1.temperature - old_reading1.temperature, 0),
+                'humidity': round(reading1.humidity - old_reading1.humidity, 0),
+                'ahumidity': round(kiln1ah - old_kiln1ah, 0),
             },
             'kiln2':{
-                'temperature': round(reading2.temperature - old_reading2.temperature, 2),
-                'humidity': round(reading2.humidity - old_reading2.humidity, 2),
-                'ahumidity': round(kiln2ah - old_kiln2ah, 2),
+                'temperature': round(reading2.temperature - old_reading2.temperature, 0),
+                'humidity': round(reading2.humidity - old_reading2.humidity, 0),
+                'ahumidity': round(kiln2ah - old_kiln2ah, 0),
             },
 
         }
@@ -190,6 +197,8 @@ def main_dev(request):
                     'trend': trend,
                     'daynum1': daynum1,
                     'daynum2': daynum2,
+                    'kiln1_data_old': kiln1_data_old,
+                    'kiln2_data_old': kiln2_data_old,
           }
         return render(request, 'dashboard/main_dev.html', context=context)
     except Exception as e:

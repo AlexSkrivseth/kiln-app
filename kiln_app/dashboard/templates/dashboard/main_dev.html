@@ -1,145 +1,98 @@
-{% extends "dashboard/base.html" %}
+{% extends "dashboard/base_dev.html" %}
 
 {% block main %}
 
-
-  <h2><a href="/kiln/1/"><span class='badge badge-primary'>Kiln - 1 </span></a><span class='badge badge-secondary'>Day {{daynum1}}</span></h2>
-
-  <table class="charts-css line" id="my-chart">
-
-  <tbody>
-    <tr>
-      <td style="--start: 0.2; --size: 0.4"> <span class="data"> $ 40K </span> </td>
-    </tr>
-    <tr>
-      <td style="--start: 0.4; --size: 0.8"> <span class="data"> $ 80K </span> </td>
-    </tr>
-    <tr>
-      <td style="--start: 0.8; --size: 0.6"> <span class="data"> $ 60K </span> </td>
-    </tr>
-    <tr>
-      <td style="--start: 0.6; --size: 1.0"> <span class="data"> $ 100K </span> </td>
-    </tr>
-    <tr>
-      <td style="--start: 1.0; --size: 0.3"> <span class="data"> $ 30K </span> </td>
-    </tr>
-  </tbody>
-
-</table>
-
-  <table class="table table-striped shadow-lg p-3 mb-5 bg-white rounded">
-    <thead>
-      <tr style="text-align: center;">
-
-        <th>What Job is Cooking?</th>
-        <th>Temperature</th>
-        <th>Humidity</th>
-        <th>Time Stamp</th>
-
-      </tr>
-    </thead>
-    <tbody>
-
-    <tr style="text-align: center;">
-      <td>{{reading1.load.job}}</td>
-      <td>{{reading1.temperature}} F</td>
-      <td>{{reading1.humidity}} %</td>
-      <td>{{reading1.timestamp}}</td>
-    </tr>
-
-      <tr style="text-align: center;">
-        <td class='font-weight-bold'>24HR TREND ->> </td>
-        {% if trend.kiln1.temperature > 0 %}
-          <td class='text-success'>{{trend.kiln1.temperature}} F</td>
-        {% elif trend.kiln1.temperature > -10  %}
-            <td class='text-warning'>{{trend.kiln1.temperature}} F</td>
+<div class='flex-box-cards' style='width: 100%; padding: 0px;'>
+  <div class='card'>
+      <div class="card-flex-item">
+        <div class="card-item"><h1>Kiln 1</h1></div>
+        {% if kiln1_data_old %}
+        <div class='card-item' style="color: red;">Last Online -  {{reading1.timestamp}} <i class="fas fa-exclamation"></i> </div>
         {% else %}
-            <td class='text-danger'>{{trend.kiln1.temperature}} F</td>
-        {%endif%}
+        <div class='card-item' style="color: #41B3A3;;">Last Online -  {{reading1.timestamp}} <i class="fas fa-check-circle"></i> </div>
+        {% endif%}
+      </div>
+      <div class="card-flex-item">
 
-        {% if trend.kiln1.humidity < 0 %}
-          <td class='text-success'>{{trend.kiln1.humidity}} %</td>
-        {%else%}
-          <td class='text-warning'>{{trend.kiln1.humidity}} %</td>
-        {%endif%}
-
-        <td>##</td>
-
-      </tr>
-
-    </tbody>
-  </table>
-
-  <h2><a href='kiln/2/'><span class='badge badge-primary'>Kiln - 2 </span></a><span class='badge badge-secondary'>Day {{daynum2}}</span></h2>
-
-  <table class="table table-striped shadow-lg p-3 mb-5 bg-white rounded">
-    <thead>
-      <tr style="text-align: center;">
-
-        <th>What Job is Cooking?</th>
-
-        <th>Temperature</th>
-        <th>Humidity</th>
-
-        <th>Time Stamp</th>
-
-      </tr>
-    </thead>
-    <tbody>
-
-    <tr style="text-align: center;">
-      <td>{{reading2.load.job}}</td>
-      <td>{{reading2.temperature}} F</td>
-      <td>{{reading2.humidity}} %</td>
-
-        <td>{{reading2.timestamp}}</td>
-
-    </tr>
-    <tr style="text-align: center;">
-      <td class='font-weight-bold'>24HR TREND ->> </td>
-      {% if trend.kiln2.temperature > 0 %}
-        <td class='text-success'>{{trend.kiln2.temperature}} F</td>
-      {% elif trend.kiln2.temperature > -10  %}
-        <td class='text-warning'>{{trend.kiln2.temperature}} F</td>
-      {% else %}
-        <td class='text-danger'>{{trend.kiln2.temperature}} F</td>
-
-      {%endif%}
-
-      {% if trend.kiln2.humidity < 0 %}
-        <td class='text-success'>{{trend.kiln2.humidity}} %</td>
-      {%else%}
-        <td class='text-warning'>{{trend.kiln2.humidity}} %</td>
-      {%endif%}
-
-      <td>##</td>
-
-    </tr>
-
-    </tbody>
-  </table>
-
-<h4><span class='badge badge-info'>Outside Conditions </span></h4>
-<table class="table table-striped shadow-lg p-3 mb-5 bg-white rounded">
-  <thead>
-    <tr style="text-align: center;">
-
-      <th>Temperature</th>
-      <th>Humidity</th>
+        <div class="card-item"><h4>{{reading1.load.job}}</h4> </div>
+        <div class="card-item"><h4>Day {{daynum1}}</h4> </div>
+      </div>
+      <div class="card-flex-item">
+        <div class="card-item" style=" background: #E27D60;">
+          <div style=" text-align: center"><strong>Temperature</strong></div>
+          <div style=" text-align: center"><h2>{{reading1.temperature|floatformat:0}} F</h2></div>
+        </div>
+        <div class="card-item" style=" background: #41B3A3;">
+          <div style=" text-align: center"><strong>Humidity</strong></div>
+          <div style=" text-align: center"><h2>{{reading1.humidity|floatformat:0}} %</h2></div>
+        </div>
+      </div>
+      <div class="card-flex-item">
+        <div class="card-item" style=" background: #E27D60;">
+          <div style=" text-align: center">24hr Trend</div>
+          {% if trend.kiln1.temperature > 0 %}
+          <div style=" text-align: center"><h2> <i class="fas fa-arrow-up"></i> {{trend.kiln1.temperature}} F</h2></div>
+          {% else%}
+          <div style=" text-align: center"><h2> <i class="fas fa-arrow-down"></i> {{trend.kiln1.temperature}} F</h2></div>
+          {% endif %}
+        </div>
+        <div class="card-item" style=" background: #41B3A3;">
+          <div style=" text-align: center">24hr Trend</div>
+          {% if trend.kiln1.humidity > 0 %}
+          <div style=" text-align: center"><h2><i class="fas fa-arrow-up"></i> {{trend.kiln1.humidity}} %</h2></div>
+          {% else %}
+          <div style=" text-align: center"><h2><i class="fas fa-arrow-down"></i> {{trend.kiln1.humidity}} %</h2></div>
+          {% endif %}
+        </div>
+      </div>
 
 
-    </tr>
-  </thead>
-  <tbody>
+  </div>
+  <div class='card'>
+      <div class="card-flex-item">
+        <div class="card-item"><h1>Kiln 2</h1></div>
+        {% if kiln2_data_old %}
+        <div class='card-item' style="color: red;">Last Online -  {{reading2.timestamp}} <i class="fas fa-exclamation"></i> </div>
+        {% else %}
+        <div class='card-item' style="color: #41B3A3;;">Last Online -  {{reading2.timestamp}} <i class="fas fa-check-circle"></i> </div>
+        {% endif%}
+      </div>
+      <div class="card-flex-item">
 
-  <tr style="text-align: center;">
+        <div class="card-item"><h4>{{reading2.load.job}}</h4> </div>
+        <div class="card-item"><h4>Day {{daynum2}}</h4> </div>
+      </div>
+      <div class="card-flex-item">
+        <div class="card-item" style=" background: #E27D60;">
+          <div style=" text-align: center"><strong>Temperature</strong></div>
+          <div style=" text-align: center"><h2>{{reading2.temperature|floatformat:0}} F</h2></div>
+        </div>
+        <div class="card-item" style=" background: #41B3A3;">
+          <div style=" text-align: center"><strong>Humidity</strong></div>
+          <div style=" text-align: center"><h2>{{reading2.humidity|floatformat:0}} %</h2></div>
+        </div>
+      </div>
+      <div class="card-flex-item">
+        <div class="card-item" style=" background: #E27D60;">
+          <div style=" text-align: center">24hr Trend</div>
+          {% if trend.kiln2.temperature > 0 %}
+          <div style=" text-align: center"><h2> <i class="fas fa-arrow-up"></i> {{trend.kiln2.temperature}} F</h2></div>
+          {% else%}
+          <div style=" text-align: center"><h2> <i class="fas fa-arrow-down"></i> {{trend.kiln2.temperature}} F</h2></div>
+          {% endif %}
+        </div>
+        <div class="card-item" style=" background: #41B3A3;">
+          <div style=" text-align: center">24hr Trend</div>
+          {% if trend.kiln2.humidity > 0 %}
+          <div style=" text-align: center"><h2><i class="fas fa-arrow-up"></i> {{trend.kiln2.humidity}} %</h2></div>
+          {% else %}
+          <div style=" text-align: center"><h2><i class="fas fa-arrow-down"></i> {{trend.kiln2.humidity}} %</h2></div>
+          {% endif %}
+        </div>
+      </div>
 
-    <td>{{current_conditions.outside_temp}} F</td>
-    <td>{{current_conditions.outside_humid}} %</td>
 
+  </div>
 
-  </tr>
-
-  </tbody>
-</table>
+</div>
 {% endblock %}
