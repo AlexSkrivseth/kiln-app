@@ -12,18 +12,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tank Hacker</title>
+    <title>Kiln App</title>
 
     <style media="screen">
 
-      button {
+      .button {
         margin: 2px 2px;
       }
 
       .flex-box-cards {
 
         background-color: white;
-        margin: 10px;
+        margin: 1px;
         padding: 5px 5px 5px 5px;
         display: flex;
         align-items: top;
@@ -33,7 +33,7 @@
       }
 
       .card {
-        margin: 8px;
+        margin: 1px;
         padding: 5px 5px 5px 5px;
         background-color: white;
         width: 450px;
@@ -59,23 +59,21 @@
         height: content;
         flex-grow: 1;
         border-radius: 5px;
-
+      }
     </style>
   </head>
   <body>
   <nav class="navbar navbar-expand-md navbar-grey bg-dark fixed-top">
-    <a class="navbar-brand" href="/"><img src= '{% static "dashboard/CaribouHead.png"%}' alt="Caribou Head"alt="" width="32"></a>
-
-    <ul class="nav navbar-nav mr-auto"></ul>
-    <ul class="nav navbar-nav">
-      <li class="nav-item" style=" margin: 4px;"><a class="btn btn-outline-light" href="/">Old Dashboard</a></li>
-      <li class="nav-item" style=" margin: 4px;"><a class="btn btn-outline-light" href="/main_dev">New Dashboard</a></li>
-      <li class="nav-item" style=" margin: 4px;"><a class="btn btn-outline-light" href="/api">Add Load</a></li>
+    <a class="navbar-brand mr-auto" href="/"><img src= '{% static "dashboard/CaribouHead.png"%}' alt="Caribou Head"alt="" width="32"></a>
+    <ul class="nav ">
+      <li class="nav-item" style=" margin: 4px;"><a class="btn btn-warning" href="/old_dash">Old Dashboard</a></li>
+      <li class="nav-item" style=" margin: 4px;"><a class="btn btn-info" href="/main_dev">New Dashboard</a></li>
+      <li class="nav-item" style=" margin: 4px;"><a class="btn btn-success" href="/api">Add Load</a></li>
 
     </ul>
   </nav>
 
-    <div style=" padding-top: 160px; padding-left: 10px; padding-right: 10px; ">
+    <div style=" padding-top: 100px; padding-left: 10px; padding-right: 10px; ">
      {% block main %}
      {% endblock main %}
    </div>
