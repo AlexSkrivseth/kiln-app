@@ -186,7 +186,12 @@ def main_dev(request):
 
         }
 
+        # Get a random joke for the sake of it
 
+        jr = requests.get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes')
+        print(jr)
+        setup = jr.json()['setup']
+        punchline = jr.json()['punchline']
         # pass the readings as context
         context = {
                     'reading1': reading1,
@@ -199,6 +204,8 @@ def main_dev(request):
                     'daynum2': daynum2,
                     'kiln1_data_old': kiln1_data_old,
                     'kiln2_data_old': kiln2_data_old,
+                    'setup': setup,
+                    'punchline': punchline,
           }
         return render(request, 'dashboard/main_dev.html', context=context)
     except Exception as e:
