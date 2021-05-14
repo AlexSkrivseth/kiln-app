@@ -186,13 +186,7 @@ def main_dev(request):
 
         }
 
-        # Get a random joke for the sake of it
 
-        jr = requests.get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes')
-        print(jr)
-        setup = jr.json()['setup']
-        punchline = jr.json()['punchline']
-        # pass the readings as context
         context = {
                     'reading1': reading1,
                     'reading2': reading2,
@@ -203,10 +197,29 @@ def main_dev(request):
                     'daynum1': daynum1,
                     'daynum2': daynum2,
                     'kiln1_data_old': kiln1_data_old,
-                    'kiln2_data_old': kiln2_data_old,
-                    'setup': setup,
-                    'punchline': punchline,
+                    'kiln2_data_old': kiln2_data_old
+
           }
         return render(request, 'dashboard/main_dev.html', context=context)
     except Exception as e:
         return HttpResponse("Fail {}".format(e))
+def joke(request):
+
+    # Get a random joke for the sake of it
+
+    jr = requests.get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes')
+    print(jr)
+    setup = jr.json()['setup']
+    punchline = jr.json()['punchline']
+    # cjr = requests.get('https://api.chucknorris.io/jokes/random')
+    # cjr_setup =
+    # cjr_punchline =
+
+    context = {
+
+                'setup': setup,
+                'punchline': punchline
+
+      }
+    return render(request, 'dashboard/joke.html', context=context)
+    # pass the readings as context
