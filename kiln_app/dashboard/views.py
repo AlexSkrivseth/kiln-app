@@ -168,7 +168,7 @@ def main_dev(request):
         if datetime.now(timezone.utc) - timedelta(hours=2) > reading1.timestamp:
             kiln1_data_old = True
         kiln2_data_old = False
-        if datetime.now(timezone.utc) - timedelta(hours=2) > reading1.timestamp:
+        if datetime.now(timezone.utc) - timedelta(hours=2) > reading2.timestamp:
             kiln2_data_old = True
 
 
